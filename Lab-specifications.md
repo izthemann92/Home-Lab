@@ -1,47 +1,89 @@
-# 🧱 Home Lab Specifications
+# 🧩 Home Lab Documentation
 
-## 🖥️ Host Machine
+## Overview
+This repository tracks the setup, configuration, and ongoing development of my personal **IT Home Lab**, used for studying **CompTIA A+**, **Network+**, and **Security+** certifications, as well as gaining hands-on experience in virtualization, networking, and system administration.
+
+---
+
+## 🖥️ Host System
 | Component | Specification |
 |------------|----------------|
-| **CPU** | AMD Ryzen 7 5800X |
-| **RAM** | 32 GB DDR4 |
-| **Storage** | 1 TB NVMe SSD + 2 TB HDD |
-| **GPU** | NVIDIA RTX 3060 |
-| **Network** | 1 Gbps Ethernet |
-| **Operating System** | Windows 11 Pro (Host) |
+| **Device Name** | Blake-Desktop |
+| **Processor** | Intel Core i9-12900K (12th Gen, 3.20 GHz) |
+| **Installed RAM** | 32 GB DDR4 (31.7 GB usable) |
+| **System Type** | 64-bit Operating System, x64-based processor |
+| **Virtualization** | Intel VT-x / VT-d Enabled |
+| **Hypervisor** | Oracle VirtualBox 7.x |
+| **Operating System** | Windows 11 Pro |
 
-## 🪟 Virtualization Platform
-| Software | Version | Notes |
-|-----------|----------|-------|
-| **VirtualBox** | 7.0.x | Main virtualization platform |
-| **VMware Workstation** | (Optional) | For alternative testing |
+---
 
-## 🧩 Virtual Machines
-| VM | OS | Purpose | Resources |
-|----|----|----------|------------|
-| **Ubuntu Server** | 24.04 LTS | Linux CLI practice, web server | 2 CPU, 4GB RAM, 40GB disk |
-| **Windows 10 Pro** | 22H2 | Client management, admin tools | 2 CPU, 4GB RAM, 60GB disk |
-| **Windows Server 2019** | Core | Active Directory & networking | 4 CPU, 8GB RAM, 80GB disk |
-| **pfSense** | Latest | Firewall & router | 1 CPU, 2GB RAM, 10GB disk |
+## 🧠 Virtual Machine Lab Setup
 
-## 🌐 Network Layout
-```mermaid
-graph TD
-A[Host PC] --> B[VirtualBox]
-B --> C[pfSense Firewall]
-C --> D[Windows Server 2019 - AD]
-C --> E[Windows 10 Client]
-C --> F[Ubuntu Server]
-```
+## static IP Address assigned:
+Windows 11: 192.168.10.11
+ubuntu Server: 192.168.10.20
 
-## 🧰 Tools & Utilities
-- PowerShell, CMD, and Bash scripting
-- Wireshark, Nmap, Zenmap
-- Remote Desktop, SSH, SCP
-- Sysinternals Suite
-- GNS3 (optional for advanced networking)
+### 🪟 Win-Lab
+Windows 11 (64-bit) – *Client Workstation for Networking and Troubleshooting Practice*
 
-## 🔒 Security & Backups
-- Weekly VM snapshots  
-- Regular exports of `.vbox` and `.vdi` files  
-- Isolated test network for experiments  
+| Resource | Specification |
+|-----------|----------------|
+| **vCPU** | 2 Cores |
+| **Memory** | 4 GB |
+| **Storage** | 80 GB (VDI - Dynamic) |
+| **Network** | Adapter 1: NAT (Internet)<br>Adapter 2: Internal Network `LAB-NET` |
+| **Display** | 128 MB (VBoxSVGA) |
+| **Notes** | TPM 2.0 & Secure Boot enabled. VirtualBox Guest Additions installed. |
+
+---
+
+### 🐧 UbuntuServer-Lab
+Ubuntu Server 22.04 LTS – *Linux Server for CLI, SSH, and Networking Services*
+
+USERNAME: izthemann
+password: Sigmanurho1992!sudo
+
+| Resource | Specification |
+|-----------|----------------|
+| **vCPU** | 2 Cores |
+| **Memory** | 2 GB |
+| **Storage** | 25 GB (VDI - Dynamic) |
+| **Network** | Adapter 1: NAT (Internet)<br>Adapter 2: Internal Network `LAB-NET` |
+| **Display** | 16 MB (VMSVGA) |
+| **Notes** | OpenSSH Server installed for remote access. Used for network practice, updates, and server roles. |
+
+---
+
+### 🐉 Kali-Lab *(In Progress)*
+Kali Linux 2024.x (Xfce) – *Security and Network Testing Environment*
+
+| Resource | Specification |
+|-----------|----------------|
+| **vCPU** | 2 Cores |
+| **Memory** | 4 GB |
+| **Storage** | 40 GB (VDI - Dynamic) |
+| **Network** | Adapter 1: NAT<br>Adapter 2: Internal Network `LAB-NET` |
+| **Display** | 64 MB (VMSVGA) |
+| **Notes** | XFCE Desktop Environment; includes top security tools for testing and training. |
+
+---
+
+## 🌐 Network Topology
+
+```plaintext
+          [Internet]
+              │
+        (NAT Adapter)
+              │
+        ┌──────────────┐
+        │  Host System │
+        └──────────────┘
+              │
+      ┌────────────────────┐
+      │ Internal Network:  │  "LAB-NET"
+      │ 192.168.10.0/24    │
+      └────────────────────┘
+        ├── Win-Lab → 192.168.10.11
+        ├── UbuntuServer-Lab → 192.168.10.20
+        └── Kali-Lab → 192.168.10.30
