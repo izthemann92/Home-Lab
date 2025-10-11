@@ -25,9 +25,9 @@ This project demonstrates:
 
 ## 🔧 Current Goals
 - [x] Build and document base home lab system  
-- [ ] Complete CompTIA A+ practice labs  
-- [ ] Build basic AD environment  
-- [ ] Document troubleshooting cases  
+- [ ] Build Internal network with two vm machines (ubuntu server & Windows 11)
+- [ ] Add firewall using pfsense
+- [ ] Introduce an attacker / network monitor (kali linux)
 
 ---
 
@@ -36,3 +36,5 @@ This project demonstrates:
 - **Week 2:** Created Windows 10 and Windows Server 2019 virtual machines  
 - **Week 3:** Configured shared networking via internal adapter  
 - *(Ongoing updates in [progress-log.md](progress-log.md))*  
+
+---
