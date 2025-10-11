@@ -13,7 +13,7 @@ Each entry includes the date, summary of updates, and related commit notes.
   - Ubuntu Server 22.04 → `192.168.10.20`
   - Windows 11 Pro → `192.168.10.11`
 - Added **Bridged Adapter** for WAN access
-- Planned installation of **Kali Linux** VM (attacker role)
+- Planned installation of **Kali Linux** VM (attacker role / Network Manager)
 
 ---
 

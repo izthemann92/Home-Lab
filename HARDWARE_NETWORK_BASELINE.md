@@ -55,6 +55,11 @@ Ubuntu Server  Windows 11  (Kali Planned)
 | **Kali Linux** | Linux (Security) | 2 | 2 GB | 40 GB | Bridged (Attacker) | TBD | Pen-testing and external attack simulations |
 
 ---
+## Users login
+| Username | Password | Role | Vm
+
+
+---
 
 ## 🧱 Network Role Summary
 
