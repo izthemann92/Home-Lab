@@ -3,19 +3,16 @@
 This document serves as the master reference for the hardware, network topology, and virtual machine configurations used in the **Home Lab** project.
 
 ---
-
 ## 🖥️ Host System
-
 | Component | Specification |
 |------------|----------------|
-| **System Type** | Personal PC (Host) |
-| **Operating System** | Windows 11 Pro (Host) |
-| **Hypervisor** | VirtualBox |
-| **Processor (CPU)** | [Insert CPU model] |
-| **RAM (Memory)** | [Insert Total GB] |
-| **Storage** | [Insert Drive Capacity & Type (e.g., 1TB SSD)] |
-| **Networking** | Ethernet / Wi-Fi Connection to Home Network |
-
+| **Device Name** | Blake-Desktop |
+| **Processor** | Intel Core i9-12900K (12th Gen, 3.20 GHz) |
+| **Installed RAM** | 32 GB DDR4 (31.7 GB usable) |
+| **System Type** | 64-bit Operating System, x64-based processor |
+| **Virtualization** | Intel VT-x / VT-d Enabled |
+| **Hypervisor** | Oracle VirtualBox 7.x |
+| **Operating System** | Windows 11 Pro |
 ---
 
 ## 🌐 Network Configuration
@@ -55,12 +52,6 @@ Ubuntu Server  Windows 11  (Kali Planned)
 | **Kali Linux** | Linux (Security) | 2 | 2 GB | 40 GB | Bridged (Attacker) | TBD | Pen-testing and external attack simulations |
 
 ---
-## Users login
-| Username | Password | Role | Vm
-
-
----
-
 ## 🧱 Network Role Summary
 
 | Function | Host / VM | Notes |

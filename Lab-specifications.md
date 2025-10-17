@@ -41,8 +41,6 @@ Windows 11 (64-bit) – *Client Workstation for Networking and Troubleshooting P
 ### 🐧 UbuntuServer-Lab
 Ubuntu Server 22.04 LTS – *Linux Server for CLI, SSH, and Networking Services*
 
-USERNAME: izthemann
-password: Sigmanurho1992!sudo
 
 | Resource | Specification |
 |-----------|----------------|
