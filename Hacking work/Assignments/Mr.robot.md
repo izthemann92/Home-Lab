@@ -23,7 +23,11 @@ The VM isn't too difficult. There isn't any advanced exploitation or reverse eng
 ## 🔧 Lab Procedure
 
 ### Step 1 — Run Nmap (kali)
-
+```powershell
+# Replace with Windows equivalent
+ipconfig /all
+Test-NetConnection 8.8.8.8
+```
 ```bash
 nmap 10.10.10.100-200
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-06 13:03 EST
@@ -35,9 +39,7 @@ PORT    STATE  SERVICE
 80/tcp  open   http
 443/tcp open   https
 MAC Address: 08:00:27:48:75:1E (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
-
-```bash
-
+```
 <details>
 <summary> </summary>
 
@@ -52,11 +54,7 @@ nmap -sV 192.168.10.0/24
 <details>
 <summary>🪟 Example – Windows Commands</summary>
 
-```powershell
-# Replace with Windows equivalent
-ipconfig /all
-Test-NetConnection 8.8.8.8
-```
+
 </details>
 
 ### Step 2 — Continue the Lab
