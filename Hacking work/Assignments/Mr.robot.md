@@ -48,16 +48,14 @@ Port 80/tcp http is open
 ### Step 2 - Investigate discovered IP address
 <details>
 <summary>Investigate </summary>
-- visit ip address
-- locate robot.txt ('IPaddress'/robots.txt)
-    Found 3 directories 
-    * User-agent: *
-    * fsocity.dic
-    * key-1-of-3.txt ( contained first key )
 
+- Visit IP Address in browswer
+- Locate robots.txt in directories (ex. IPaddress/robots.txt)
 ###
-
-Foud first key in file Key-1-of-3.txt
+Found 3 more directories
+- User-agent: *
+- fsocity.dic
+- key-1-of-3.txt (contained first key)
 
 
 </details>
