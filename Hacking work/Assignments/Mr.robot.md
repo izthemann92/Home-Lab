@@ -23,11 +23,7 @@ The VM isn't too difficult. There isn't any advanced exploitation or reverse eng
 ## 🔧 Lab Procedure
 
 ### Step 1 — Run Nmap (kali)
-```powershell
-# Replace with Windows equivalent
-ipconfig /all
-Test-NetConnection 8.8.8.8
-```
+
 ```bash
 nmap 10.10.10.100-200
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-06 13:03 EST
