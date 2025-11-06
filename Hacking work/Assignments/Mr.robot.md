@@ -60,6 +60,26 @@ Found 3 more directories
 ![alt text](image.png)
 </details>
 
+###
+Used Dirbuster to bruteforce the webserver directory
+
+![dirbuster report](image-1.png)
+
+- /wp-login was located
+![Wordpress login](image-2.png)
+
+
+### Step 3 - Getting username and password for Wordpress login found\
+<details> 
+<summary> username and password </summary>
+
+
+
+</details>
+
+
+
+
 
 ---
 
