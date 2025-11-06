@@ -45,7 +45,16 @@ Port 80/tcp http is open
 
 </details>
 
+### Step 2 - Investigate discovered IP address
+<details>
+<summary>Investigate </summary>
+- visit ip address
+- look for robot.txt
 
+Foud first key in file Key-1-of-3
+
+
+</details>
 
 
 ---
