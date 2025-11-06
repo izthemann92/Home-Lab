@@ -22,11 +22,22 @@ The VM isn't too difficult. There isn't any advanced exploitation or reverse eng
 
 ## 🔧 Lab Procedure
 
-### Step 1 — Start machines
+### Step 1 — Run Nmap (kali)
+nmap 10.10.10.100-200
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-06 13:03 EST
+Nmap scan report for 10.10.10.103
+Host is up (0.00042s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE  SERVICE
+22/tcp  closed ssh
+80/tcp  open   http
+443/tcp open   https
+MAC Address: 08:00:27:48:75:1E (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+
 
 
 <details>
-<summary>🐧 Example – Ubuntu Commands</summary>
+<summary> </summary>
 
 ```bash
 # Replace with your actual commands
