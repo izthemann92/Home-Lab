@@ -49,7 +49,11 @@ Port 80/tcp http is open
 <details>
 <summary>Investigate </summary>
 - visit ip address
-- look for robot.txt
+- locate robot.txt ('IPaddress'/robots.txt)
+    Found 3 directories 
+    * User-agent: *
+    * fsocity.dic
+    * key-1-of-3.txt ( contained first key )
 
 ###
 
