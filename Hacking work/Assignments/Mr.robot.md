@@ -24,40 +24,15 @@ The VM isn't too difficult. There isn't any advanced exploitation or reverse eng
 
 ### Step 1 — Run Nmap (kali)
 
-```bash
-nmap 10.10.10.100-200
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-11-06 13:03 EST
-Nmap scan report for 10.10.10.103
-Host is up (0.00042s latency).
-Not shown: 997 filtered tcp ports (no-response)
-PORT    STATE  SERVICE
-22/tcp  closed ssh
-80/tcp  open   http
-443/tcp open   https
-MAC Address: 08:00:27:48:75:1E (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
-```
-<details>
-<summary> </summary>
-
-```bash
-# Replace with your actual commands
-sudo apt update
-sudo apt install -y nmap
-nmap -sV 192.168.10.0/24
-```
-</details>
-
-<details>
-<summary>🪟 Example – Windows Commands</summary>
 
 
-</details>
 
-### Step 2 — Continue the Lab
-- Include screenshots as needed.
-- Mention expected results or output indicators.
 
----
+
+
+
+
+
 
 ## ✅ Completion Checklist
 - [x] flag1: 073403c8a58a1f80d943455fb30724b9
