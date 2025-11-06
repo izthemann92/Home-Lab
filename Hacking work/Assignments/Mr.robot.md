@@ -41,6 +41,7 @@ MAC Address: 08:00:27:48:75:1E (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
 
 ```
 
+Port 80/tcp http is open
 
 </details>
 
