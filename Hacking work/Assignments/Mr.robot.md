@@ -51,7 +51,9 @@ Port 80/tcp http is open
 - visit ip address
 - look for robot.txt
 
-Foud first key in file Key-1-of-3
+###
+
+Foud first key in file Key-1-of-3.txt
 
 
 </details>
