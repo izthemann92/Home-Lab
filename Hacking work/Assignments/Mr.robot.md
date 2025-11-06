@@ -23,15 +23,16 @@ The VM isn't too difficult. There isn't any advanced exploitation or reverse eng
 ## 🔧 Lab Procedure
 
 ### Step 1 — Run Nmap (kali)
+<details> 
+
+
+
+</details>
 
 
 
 
-
-
-
-
-
+---
 
 
 ## ✅ Completion Checklist

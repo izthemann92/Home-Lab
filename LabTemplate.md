@@ -37,6 +37,7 @@ Describe what this lab demonstrates or what concept it aligns with from the Comp
 Provide clear, concise steps. Use collapsible sections for commands or longer code blocks.
 
 <details>
+
 <summary>🐧 Example – Ubuntu Commands</summary>
 
 ```bash
