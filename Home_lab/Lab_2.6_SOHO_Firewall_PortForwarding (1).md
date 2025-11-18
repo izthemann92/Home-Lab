@@ -3,184 +3,120 @@ title: "Lab 2.6 – SOHO Firewall and Port Forwarding (Finalized Setup Guide)"
 author: "Blake Mann"
 date: "2025-10-11"
 difficulty: Intermediate
-lab_type: "Networking / Security"
+lab_type: Networking / Security
 objectives:
   - Configure pfSense as a virtual gateway and firewall
-  - Create an isolated internal lab network (Lab-net)
-  - Add Kali as an external attacker (bridged)
-  - Add Kali as an internal attacker VM inside Lab-net
-  - Validate connectivity and simulate external attacks through pfSense
+  - Create an isolated internal lab network (`Lab-net`)
+  - Add Kali as an external attacker from the host/bridged network
+  - Add a
+  - Validate connectivity and simulate external attack through pfSense
 ---
 
-# 🧪 Lab 2.6 – SOHO Firewall and Port Forwarding  
-This lab recreates a realistic SOHO network where **pfSense** protects an isolated subnet and **Kali Linux** launches controlled external attack traffic through the pfSense WAN interface.
+# 🧪 Lab 2.6 – SOHO Firewall and Port Forwarding
+
+## ✅ Overview
+This lab creates a secure, isolated network where **Kali Linux** (attacker) connects from the host/bridged network into a private lab environment through **pfSense**, simulating external attacks in a controlled environment.
 
 ---
 
-# 🧭 Network Diagram (Final)
+## 🧭 Network Layout
 
-```mermaid
-flowchart TB
-    EXT_KALI["External Kali (Bridged)"]
-    HOSTNET["Home / Host Network"]
-    PFS["pfSense Firewall\nWAN = NAT\nLAN = 10.10.10.1/24"]
-    LABNET["Lab-net 10.10.10.0/24"]
-    UB["Ubuntu 10.10.10.20"]
-    WIN["Windows 11 10.10.10.30"]
-    TGT3["Target3 10.10.10.40"]
-    INT_KALI["Internal Kali 10.10.10.50"]
-
-    EXT_KALI --> HOSTNET
-    HOSTNET --> PFS
-    PFS --> LABNET
-    LABNET --> UB
-    LABNET --> WIN
-    LABNET --> TGT3
-    LABNET --> INT_KALI
-
+```
+[Host PC / Kali (Bridged)]
+          |
+      [pfSense]
+  WAN (NAT to host)
+  LAN (10.10.10.1/24)
+          |
+  ---------------------------
+  |         |         |
+[Ubuntu] [Win11] [Target3]
+10.10.10.20 10.10.10.30 10.10.10.40
 ```
 
 ---
 
-# ⚙️ Step-by-Step Setup Guide
+## ⚙️ Step-by-Step Guide
 
-## 🧩 Step 1 — Create the pfSense VM
-- [x] Download pfSense ISO.
-- [x] VirtualBox → New → Type: BSD → Version: FreeBSD (64-bit)
-- [x] Attach 2 adapters:
-  - **Adapter 1 (WAN):** NAT  
-  - **Adapter 2 (LAN):** Internal Network → `Lab-net`
-- [x] Install pfSense normally.
-- [x] Set LAN IP → `10.10.10.1/24`.
-- [x] Enable DHCP on LAN:  
+### 🧩 Step 1 — Create pfSense VM
+- [x] Download pfSense ISO and create new VM.
+- [x] **Adapter 1:** NAT → pfSense WAN
+- [x] **Adapter 2:** Internal Network → Name: `Lab-net`
+- [x] Boot and install pfSense.
+- [x] Set **LAN IP:** 10.10.10.1/24
+- [x] Enable **DHCP** on LAN (range 10.10.10.100–200).
+
+### 🧩 Step 2 — Configure Targets (Ubuntu + Windows)
+- [x] Attach both VMs to `Lab-net` internal network.
+- [x] Confirm IPs via DHCP or set static:
+  - Ubuntu: 10.10.10.20
+  - Windows: 10.10.10.30
+- [x] Ping pfSense gateway (10.10.10.1) to confirm connectivity.
+
+### 🧩 Step 3 — Create Kali (Attacker)
+- [x] Create Kali VM (Bridged adapter to host network).
+- [x] Update and install tools:
+  ```bash
+  sudo apt update && sudo apt full-upgrade -y
+  sudo apt install -y nmap tcpdump
   ```
-  Start: 10.10.10.100
-  End:   10.10.10.200
+
+### 🧩 Step 4 — Create VirtualBox Port Forwarding (Host → pfSense WAN)
+1. pfSense → Settings → Network → Adapter 1 (NAT) → Advanced → Port Forwarding.
+2. Add rules:
+   | Name | Protocol | Host Port | Guest Port |
+   |-------|-----------|------------|-------------|
+   | pf-ssh | TCP | 2222 | 2222 |
+   | pf-http | TCP | 8080 | 8080 |
+
+### 🧩 Step 5 — pfSense NAT Rules (WAN → LAN Target)
+1. pfSense Web UI → **Firewall → NAT → Port Forward → Add**
+2. Example SSH rule:
+   - Interface: WAN
+   - Protocol: TCP
+   - Destination: WAN address
+   - Destination Port: 2222
+   - Redirect IP: 10.10.10.20
+   - Redirect Port: 22
+   - Description: Host 2222 → 10.10.10.20:22
+3. Save & Apply.
+
+### 🧩 Step 6 — Test Connectivity
+- From **Kali (bridged)**, test SSH through pfSense:
+  ```bash
+  ssh -p 2222 user@127.0.0.1
+  ```
+- From **Ubuntu**, verify response to pfSense ping:
+  ```bash
+  ping 10.10.10.1
   ```
 
----
-
-## 🧩 Step 2 — Configure Internal Targets  
-Attach Ubuntu, Windows, and Target3 to `Lab-net`:
-
-| VM | Role | Static IP |
-|----|-------|-----------|
-| Ubuntu | Server | 10.10.10.20 |
-| Windows 11 | Workstation | 10.10.10.30 |
-| Target3 | Optional vuln box | 10.10.10.40 |
-
-Test connections:
-
-```bash
-ping 10.10.10.1
-```
+### 🧩 Step 7 — Snapshot and Documentation
+- [x] Snapshot all VMs after configuration.
+- [x] Snapshot again before and after attack simulation.
+- [x] Record verification screenshots and logs.
 
 ---
 
-## 🧩 Step 3 — Kali Linux (External Attacker)
-- [x] Create a Kali VM  
-- [x] Adapter: **Bridged Adapter** → Host NIC  
-- [x] Update tools:
-
-```bash
-sudo apt update && sudo apt full-upgrade -y
-sudo apt install -y nmap gobuster tcpdump
-```
-
-Kali receives an IP from your **real router**, not Lab-net.
-
----
-
-## 🧩 Step 4 — Kali Linux (Internal Attacker)
-This VM simulates an internal threat actor.
-
-- Adapter: **Internal Network → Lab-net**
-- Suggested IP: `10.10.10.50`
-
-Update tools as above.
-
----
-
-## 🧩 Step 5 — VirtualBox Port Forwarding (Host → pfSense WAN)
-Required so that **external Kali** can reach pfSense WAN services.
-
-VirtualBox → pfSense → Settings → Network → Adapter 1 → Advanced → Port Forwarding
-
-| Name    | Protocol | Host Port | Guest Port | Purpose |
-|---------|----------|-----------|------------|----------|
-| pf-ssh  | TCP      | 2222      | 22         | SSH to LAN targets |
-| pf-web  | TCP      | 8080      | 80         | Web access to LAN targets |
-
----
-
-## 🧩 Step 6 — pfSense NAT Rules (WAN → LAN)
-Navigate:  
-**pfSense → Firewall → NAT → Port Forward → Add**
-
-Example: Forward WAN:2222 → Ubuntu:22
-
-- Interface: WAN  
-- Protocol: TCP  
-- Destination: WAN Address  
-- Destination port: 2222  
-- Redirect target IP: `10.10.10.20`  
-- Redirect port: 22  
-- Description: `External SSH → Ubuntu`  
-
-Click **Save** & **Apply Changes**.
-
----
-
-## 🧩 Step 7 — Test Connectivity
-
-### ✔️ From External Kali (Bridged):
-Test SSH into internal Ubuntu through pfSense NAT:
-
-```bash
-ssh -p 2222 user@<pfSense_WAN_IP>
-```
-
-Your pfSense WAN IP is listed under **Status → Interfaces**.
-
-### ✔️ From Ubuntu/Windows:
-Confirm LAN routing:
-
-```bash
-ping 10.10.10.1
-```
-
-### ✔️ From Internal Kali:
-Try scanning the network:
-
-```bash
-nmap -sn 10.10.10.0/24
-```
-
----
-
-# 🧾 Verification Checklist
+## 🧾 Verification Checklist
 
 | Task | Status |
 |------|--------|
 | pfSense Installed | ☑️ |
-| Lab-net Configured | ☑️ |
-| Internal Static/DHCP IPs Assigned | ☑️ |
-| External Kali (Bridged) Setup | ☑️ |
-| Internal Kali Added | ☑️ |
-| VirtualBox Port Forwarding | ☑️ |
-| pfSense NAT Rules | ☑️ |
-| Connectivity Verified | ☑️ |
-| Snapshots Created | ☑️ |
+| Internal Network Configured | ☑️ |
+| Static/DHCP IPs Assigned | ☑️ |
+| Kali Configured (Bridged) | ☑️ |
+| pfSense NAT Rules Created | ☑️ |
+| Connection Verified (SSH/HTTP) | ☑️ |
+| Snapshots Taken | ☑️ |
 
 ---
 
-# 🧠 Reflection & Notes
-
-- pfSense successfully acts as a **SOHO gateway** with NAT + firewall rules.  
-- Kali (bridged) provides **external adversary simulation**.  
-- Internal Kali provides **insider threat simulation**.  
-- This lab builds directly toward **CompTIA A+, Network+, Security+** practical training.  
-- Snapshots ensure safe rollback during exploitation and recon tests.  
+## 🧠 Reflection & Notes
+- pfSense effectively isolates and controls all ingress/egress traffic.
+- Kali simulates external adversary behavior through NAT translation.
+- Reverting snapshots maintains a safe testing cycle.
+- This setup provides a reusable framework for future A+ Core 1 and security labs.
 
 ---
 

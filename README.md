@@ -15,26 +15,11 @@ This project demonstrates:
 ## 🧱 Lab Sections
 | Folder | Description |
 |--------|--------------|
-| `/labs/` | All completed and in-progress labs |
-| `/lab-template/` | Template used to create new lab entries |
-| `/configs/` | Config files for networks, servers, and services |
-| `/scripts/` | Helpful PowerShell/Bash scripts |
-| `/assets/` | Diagrams, screenshots, and architecture visuals |
-
----
-
-## 🔧 Current Goals
-- [x] Build and document base home lab system  
-- [ ] Build Internal network with two vm machines (ubuntu server & Windows 11)
-- [ ] Add firewall using pfsense
-- [ ] Introduce an attacker / network monitor (kali linux)
-
----
-
-## 📅 Progress Tracker
-- **Week 1:** Installed and configured VirtualBox + Ubuntu VM  
-- **Week 2:** Created Windows 10 and Windows Server 2019 virtual machines  
-- **Week 3:** Configured shared networking via internal adapter  
-- *(Ongoing updates in [progress-log.md](progress-log.md))*  
+| `/ComptiaLabs/` | Labs I have created to practice and record |
+| `/Cyber Practice/` | Ethical Hacking labs  |
+| `/Home_Lab/` | Developmental process of my home lab tracked through lab reports |
+| `/Network_Overview/` | Diagrams, screenshots, and architecture visuals |
+| `/Hardware/` | Live document that tracks hardware vms added to home lab
+| `/LabTemplate/` | Templates for future labs 
 
 ---
