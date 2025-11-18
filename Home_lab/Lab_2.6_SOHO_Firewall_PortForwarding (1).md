@@ -21,31 +21,23 @@ This lab recreates a realistic SOHO network where **pfSense** protects an isolat
 
 ```mermaid
 flowchart TB
+    EXT_KALI["External Kali (Bridged)"]
+    HOSTNET["Home / Host Network"]
+    PFS["pfSense Firewall\nWAN = NAT\nLAN = 10.10.10.1/24"]
+    LABNET["Lab-net 10.10.10.0/24"]
+    UB["Ubuntu 10.10.10.20"]
+    WIN["Windows 11 10.10.10.30"]
+    TGT3["Target3 10.10.10.40"]
+    INT_KALI["Internal Kali 10.10.10.50"]
 
-    classDef router fill:#444,stroke:#000,color:#fff,font-weight:bold;
-    classDef pfsense fill:#8b0000,stroke:#000,color:#fff,font-weight:bold;
-    classDef device fill:#1e90ff,stroke:#000,color:#fff,font-weight:bold;
-    classDef server fill:#2e8b57,stroke:#000,color:#fff,font-weight:bold;
+    EXT_KALI --> HOSTNET
+    HOSTNET --> PFS
+    PFS --> LABNET
+    LABNET --> UB
+    LABNET --> WIN
+    LABNET --> TGT3
+    LABNET --> INT_KALI
 
-    EXT_KALI[External Kali<br>(Bridged to Host Network)]:::device
-    HOSTNET[(Home/Host Network<br>DHCP from ISP Router)]:::router
-
-    PFS[pfsense Firewall<br>WAN = NAT (VirtualBox)<br>LAN = Lab-net 10.10.10.1/24]:::pfsense
-
-    LABNET[(Lab-net<br>10.10.10.0/24)]:::router
-
-    UB[Ubuntu Server<br>10.10.10.20]:::server
-    WIN[Windows 11<br>10.10.10.30]:::device
-    TGT3[Target3 VM<br>10.10.10.40]:::device
-    INT_KALI[Internal Kali<br>10.10.10.50]:::device
-
-    EXT_KALI --- HOSTNET
-    HOSTNET --- PFS
-    PFS --- LABNET
-    LABNET --- UB
-    LABNET --- WIN
-    LABNET --- TGT3
-    LABNET --- INT_KALI
 ```
 
 ---
