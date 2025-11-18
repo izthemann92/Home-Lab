@@ -34,7 +34,7 @@ DHCP Server: 10.10.10.100–200
       v                 v                   v                v
 +------------+   +------------+     +--------------+   +--------------+
 |  Ubuntu    |   | Windows 11 |     |  Target3     |   |   Kali       |
-|   DHCP     |   |   DHCP     |     |  Hack Box     |   | Internal Attacker |
+|   DHCP     |   |   DHCP     |     |  Hack Box    |   | Internal Attacker |
 +------------+   +------------+     +--------------+   +--------------+
 
 ```

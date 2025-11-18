@@ -1,6 +1,9 @@
 # 🧪 Lab 01 - Static IP Configuration and Connectivity
 
 ## 🎯 Objective
+
+In this lab I am starting the creation of my private internal network using static ip addresses.
+
 Set static IP addresses on both host and Ubuntu Server VM, and verify communication between the two systems.
 
 ## ⚙️ Environment Setup
